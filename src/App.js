@@ -1,15 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
-
-//business logic 
+import Header from './components/Header';
+import Content from './components/Content';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    //every visusual piece is put in here 
-    //putting in two curly brackets means wiritng in java script
-    <div className="App">
-       <h1>Hello World!</h1>
-       <h2>It is {new Date().toLocaleTimeString()}.</h2>
+    <div>
+      <Header />
+      <Content />
+      <Footer />
     </div>
   );
 }
