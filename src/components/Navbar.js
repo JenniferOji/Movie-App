@@ -7,7 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 //the "/" directs you to the page 
 const NavigationBar = () => {
   return (
-        <Navbar bg="primary" data-bs-theme="dark">
+        <Navbar bg="dark" data-bs-theme="dark">
           <Container>
             <Navbar.Brand href="/Navbar">Navbar</Navbar.Brand>
             <Nav className="me-auto">
