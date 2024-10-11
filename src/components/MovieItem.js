@@ -1,0 +1,20 @@
+import { useEffect } from "react";
+import Card from 'react-bootstrap/Card';
+
+const MovieItem = (props) => {
+//displaying the items of the array 
+    return(
+        <div>
+            <Card>
+             <Card.Header>{props.myMovie.Title}</Card.Header>
+                <Card.Body>
+                  <h6>{props.myMovie.Year}</h6>
+                  <h6>{props.myMovie.Type}</h6>
+                </Card.Body>
+            </Card>
+            <img src={props.myMovie.Poster}></img>
+        </div>
+    )
+}
+
+export default MovieItem;

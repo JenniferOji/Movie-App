@@ -1,4 +1,6 @@
 //When the component is called it will be displayed on screen 
+import Movies from "./Movies";
+
 const Read = () => {
     //an array of movies 
     const data = [
@@ -26,7 +28,7 @@ const Read = () => {
       ]
     return (
     <div>
-       <h1>Hello from the Read component</h1>
+       <Movies myMovies={data}/>
     </div>
     );
 };
