@@ -1,34 +1,32 @@
 //When the component is called it will be displayed on screen 
 import Movies from "./Movies";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const Read = () => {
-    //an array of movies 
-    const data = [
-        {
-          "Title": "Avengers: Infinity War",
-          "Year": "2018",
-          "imdbID": "tt4154756",
-          "Type": "movie",
-          "Poster": "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SX300.jpg"
-        },
-        {
-          "Title": "Captain America: Civil War",
-          "Year": "2016",
-          "imdbID": "tt3498820",
-          "Type": "movie",
-          "Poster": "https://m.media-amazon.com/images/M/MV5BMjQ0MTgyNjAxMV5BMl5BanBnXkFtZTgwNjUzMDkyODE@._V1_SX300.jpg"
-        },
-        {
-          "Title": "World War Z",
-          "Year": "2013",
-          "imdbID": "tt0816711",
-          "Type": "movie",
-          "Poster": "https://m.media-amazon.com/images/M/MV5BNDQ4YzFmNzktMmM5ZC00MDZjLTk1OTktNDE2ODE4YjM2MjJjXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"
-        }
-      ]
+  //manages data in the class
+  const [movies,setMovies] = useState([]);
+  
+      //talking with an external system
+      useEffect(
+        ()=>{
+          //runs on the background not causing the app to hang 
+          // fetches data 
+          axios.get('https://jsonblob.com/api/jsonblob/1287718524221775872')
+          .then((response)=>{
+            //response.data only send back the body
+            console.log(response.data);
+            setMovies(response.data.movies)
+          })
+          
+          .catch()
+        },[]
+      );
+      
+
     return (
     <div>
-       <Movies myMovies={data}/>
+       <Movies myMovies={movies}/>
     </div>
     );
 };
