@@ -13,6 +13,10 @@ app.use(function(req, res, next) {
   next();
 });
 
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 //returns json data when there is a get request on api/movies 
 app.get('/api/movies', (req, res) => {
     const movies = [
@@ -41,7 +45,10 @@ app.get('/api/movies', (req, res) => {
     res.json({ movies });
 });
 
-
+app.post('/api/movies', (req, res) =>{
+    console.log("Movie: " +req.body.title);
+    res.send("Movies recieved");
+})
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
