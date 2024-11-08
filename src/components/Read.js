@@ -20,7 +20,7 @@ const Read = () => {
         ()=>{
           //runs on the background not causing the app to hang 
           // fetches data 
-          axios.get('https://jsonblob.com/api/jsonblob/1287718524221775872')
+          axios.get('http://localhost:4000/api/movies') //reading in the server data 
           .then((response)=>{
             //response.data only send back the body
             console.log(response.data);
