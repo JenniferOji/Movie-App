@@ -4,7 +4,7 @@ const Movies = (props) => {
     return props.myMovies.map(
         //for each movie in the array pass the data set to movie item
         (movie)=>{
-            return <MovieItem myMovie = {movie} key={MovieItem.imdbID} />
+            return <MovieItem myMovie = {movie} key={movie._id} />
         }
     )
 }

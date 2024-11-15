@@ -7,13 +7,13 @@ const MovieItem = (props) => {
     return(
         <div>
             <Card>
-             <Card.Header>{props.myMovie.Title}</Card.Header>
+             <Card.Header>{props.myMovie.title}</Card.Header>
                 <Card.Body>
                   {/* <h6>{props.myMovie.Year}</h6> */}
                   {/* <h6>{props.myMovie.Type}</h6> */}
                 </Card.Body>
             </Card>
-            <img src={props.myMovie.Poster}></img>
+            <img src={props.myMovie.poster}></img>
         </div>
     )
 }
