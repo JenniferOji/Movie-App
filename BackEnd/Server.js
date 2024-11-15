@@ -17,9 +17,23 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+const mongoose = require('mongoose');
+//connecting to mongoose database with my connection string  
+mongoose.connect('mongodb+srv://admin:admin@cluster0.sqwxk.mongodb.net/MyMovieDB');
+
+const movieSchema = new mongoose.Schema({
+    //what you want each data to store 
+    title: String,
+    year: String,
+    poster: String
+  });
+ 
+  //model based on schema 
+  const MovieModel = mongoose.model('myMovies', movieSchema);
+
 //returns json data when there is a get request on api/movies 
 app.get('/api/movies', (req, res) => {
-    const movies = [
+    const movies = [ 
         {
             "Title": "Avengers: Infinity War (server)",
             "Year": "2018",
@@ -45,10 +59,17 @@ app.get('/api/movies', (req, res) => {
     res.json({ movies });
 });
 
-app.post('/api/movies', (req, res) =>{
+app.post('/api/movies', async (req, res) =>{
     console.log("Movie: " +req.body.title);
-    res.send("Movies recieved");
+    //variables being oulled out of request 
+    const {title, year, poster} = req.body;
+    
+    const newMovie = new MovieModel({title, year, poster});
+    await newMovie.save();
+
+    res.status(201).json({ message: 'Movie created successfully', movie: newMovie });
 })
+
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
