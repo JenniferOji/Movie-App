@@ -42,6 +42,14 @@ app.get('/api/movies', async(req, res) => {
     res.json({ movies });
 });
 
+//when i edit a movie come  in and find my movie and edit it
+app.put('/api/movie/:id', async (req, res) => { //async = dont proceed until the next line until youve edited the record in the database 
+    //find the movie by its ID and update it 
+    //pull the request out of the body and overright it 
+    let movie = await MovieModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.send(movie);//send it back the new movie 
+});
+
 //when there is a request on api/movies it executes this function 
 app.post('/api/movies', async(req, res) =>{
     console.log("Movie: " +req.body.title);
@@ -59,7 +67,7 @@ app.post('/api/movies', async(req, res) =>{
 Movie.findById(req.params.id): This method searches the movies collection for a document with the ID provided in the URL.
 If a movie is found, it’s sent back in JSON format.*/
 app.get('/api/movie/:id', async (req, res) => {
-    const movie = await Movie.findById(req.params.id);
+    const movie = await MovieModel.findById(req.params.id);
     res.json(movie);
 });
 
