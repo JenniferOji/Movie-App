@@ -14,27 +14,31 @@ const Read = () => {
   //useState returns the current state and the function to update it 
   const [movies,setMovies] = useState([]);
   
-      //talking with an external system
-      //lets you synchronize a component with the browser's lifecycle events
-      useEffect(
-        ()=>{
-          //runs on the background not causing the app to hang 
-          // fetches data 
-          axios.get('http://localhost:4000/api/movies') //reading in the server data 
-          .then((response)=>{
-            //response.data only send back the body
-            console.log(response.data);
+  //Defines and manages the Reload function, which fetches updated movie data from the server and updates the state.
+    const Reload = () => {
+      console.log("Reloading movie data...");
+      axios.get('http://localhost:4000/api/movies')
+          .then((response) => {
             setMovies(response.data.movies)
           })
-          
-          .catch()
-        },[]
-      );
+          .catch((error) => {
+              console.error("Error reloading data:", error);
+          });
+  };
+
+
+      //talking with an external system
+      //lets you synchronize a component with the browser's lifecycle events
+    
+    //the page is constantly reloading 
+    useEffect(() => {
+      Reload();
+    }, []);
       
 
     return (
     <div>
-       <Movies myMovies={movies}/>
+       <Movies myMovies={movies} ReloadData={Reload} />
     </div>
     );
 };
